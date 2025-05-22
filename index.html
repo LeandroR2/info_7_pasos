@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Los 7 Pasos de la Ciencia de Datos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light grayish blue background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .chart-container {
+                height: 350px;
+            }
+        }
+        h1, h2, h3 {
+            color: #073B4C; /* Dark Blue/Black from palette */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .palette-red { color: #FF6B6B; }
+        .palette-yellow { color: #FFD166; }
+        .palette-green { color: #06D6A0; }
+        .palette-blue { color: #118AB2; }
+        .palette-darkblue { color: #073B4C; }
+
+        .bg-palette-red { background-color: #FF6B6B; }
+        .bg-palette-yellow { background-color: #FFD166; }
+        .bg-palette-green { background-color: #06D6A0; }
+        .bg-palette-blue { background-color: #118AB2; }
+        .bg-palette-darkblue { background-color: #073B4C; }
+        
+        .border-palette-red { border-color: #FF6B6B; }
+        .border-palette-yellow { border-color: #FFD166; }
+        .border-palette-green { border-color: #06D6A0; }
+        .border-palette-blue { border-color: #118AB2; }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; /* text-2xl */
+            color: #118AB2; /* palette-blue */
+            margin: 0.5rem 0; /* my-2 */
+        }
+        .step-icon {
+            font-size: 2rem; /* text-3xl */
+            margin-right: 0.75rem; /* mr-3 */
+        }
+
+    </style>
+    <!-- 
+        Confirmación: No se utilizó Mermaid JS ni SVG en este documento. 
+        Todas las visualizaciones de gráficos se realizan con Chart.js (Canvas) y los diagramas/iconos se implementan con HTML/CSS y caracteres Unicode.
+        Nombre de la paleta de colores utilizada: Energetic & Playful (#FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C)
+    -->
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-palette-darkblue text-white py-8 px-4 text-center rounded-b-xl shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-bold text-white">Los 7 Pasos Prácticos de la Ciencia de Datos</h1>
+        <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-200">Del Dato Crudo a la Decisión Inteligente: Un Viaje Visual</p>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="intro" class="card text-center">
+            <h2 class="text-3xl font-semibold mb-4">Transformando Datos en Valor</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                En la era digital, los datos son el nuevo petróleo. Pero, ¿cómo se extrae su valor? La ciencia de datos ofrece un camino estructurado, un "pipeline" que convierte la información cruda en conocimiento accionable. Esta infografía te guiará a través de los 7 pasos esenciales de este proceso, mostrando qué se hace, qué tecnologías se usan y qué resultados se buscan en cada etapa.
+            </p>
+        </section>
+
+        <section id="paso1" class="card">
+            <div class="flex items-center mb-6">
+                <span class="step-icon palette-red">📊</span>
+                <h2 class="text-3xl font-semibold">Paso 1: Definición del Problema y Recopilación de Datos</h2>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                Todo gran proyecto de ciencia de datos comienza con una pregunta clara. Este primer paso es crucial para entender el objetivo de negocio y determinar qué datos se necesitan y de dónde obtenerlos. Una definición precisa del problema es la brújula que guía todo el proceso.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Actividades Clave:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Entender el problema de negocio y traducirlo a preguntas analíticas.</li>
+                        <li>Identificar las fuentes de datos relevantes (internas, externas, APIs, etc.).</li>
+                        <li>Realizar la extracción inicial de los datos crudos.</li>
+                    </ul>
+                    <p class="mt-4 text-gray-700">Este paso sienta las bases para un análisis enfocado y efectivo, asegurando que los esfuerzos se dirijan a resolver el problema correcto.</p>
+                </div>
+                <div class="chart-container h-[300px] md:h-[350px]">
+                    <canvas id="fuentesDatosChart"></canvas>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600 text-center">El gráfico ilustra la diversidad de orígenes de datos, cada uno aportando piezas únicas al rompecabezas analítico.</p>
+        </section>
+
+        <section id="paso2" class="card">
+            <div class="flex items-center mb-6">
+                 <span class="step-icon palette-yellow">🧹</span>
+                <h2 class="text-3xl font-semibold">Paso 2: Limpieza y Preparación de Datos</h2>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                Los datos del mundo real raramente son perfectos. Esta fase, a menudo la más larga, se dedica a transformar datos crudos y desordenados en un conjunto de alta calidad, listo para el análisis. La calidad de los datos preparados impacta directamente en la fiabilidad de los resultados.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                 <div>
+                    <h3 class="text-xl font-semibold mb-3">Actividades Clave:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Manejo de valores faltantes y tratamiento de valores atípicos (outliers).</li>
+                        <li>Conversión de tipos de datos y estandarización/normalización.</li>
+                        <li>Manejo de datos categóricos e ingeniería de características (crear nuevas variables).</li>
+                    </ul>
+                     <p class="mt-4 text-gray-700">Una preparación meticulosa es fundamental, ya que "basura entra, basura sale". Este esfuerzo garantiza que los modelos se construyan sobre una base sólida.</p>
+                </div>
+                <div class="chart-container h-[300px] md:h-[350px]">
+                    <canvas id="tiempoPreparacionChart"></canvas>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600 text-center">El gráfico muestra cómo se distribuye el tiempo en las tareas de preparación, destacando la importancia de la limpieza y la ingeniería de características.</p>
+        </section>
+
+        <section id="paso3" class="card">
+            <div class="flex items-center mb-6">
+                <span class="step-icon palette-green">🔍</span>
+                <h2 class="text-3xl font-semibold">Paso 3: Análisis Exploratorio de Datos (EDA)</h2>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                Con los datos limpios, es hora de explorarlos. El EDA es un proceso de investigación para descubrir patrones, detectar anomalías, probar hipótesis y verificar suposiciones mediante estadísticas descriptivas y visualizaciones. Es como conocer a fondo los datos antes de intentar modelarlos.
+            </p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Actividades Clave:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Calcular estadísticas descriptivas (media, mediana, desviación estándar).</li>
+                        <li>Crear visualizaciones (histogramas, gráficos de dispersión, box plots).</li>
+                        <li>Identificar patrones, tendencias, correlaciones y posibles sesgos.</li>
+                    </ul>
+                    <p class="mt-4 text-gray-700">El EDA proporciona una comprensión profunda de los datos y guía la selección de modelos y características.</p>
+                </div>
+                <div class="chart-container h-[300px] md:h-[350px]">
+                    <canvas id="tendenciaEDAChart"></canvas>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600 text-center">Un ejemplo de tendencia que podría descubrirse durante el EDA, como el crecimiento de interacciones a lo largo del tiempo.</p>
+        </section>
+
+        <section id="paso4" class="card">
+            <div class="flex items-center mb-6">
+                <span class="step-icon palette-blue">🧠</span>
+                <h2 class="text-3xl font-semibold">Paso 4: Modelado Predictivo o Descriptivo</h2>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                Esta es la fase donde se construye el "cerebro" que resolverá el problema. Se seleccionan y entrenan algoritmos de Machine Learning (clasificación, regresión, clustering) utilizando los datos preparados para que aprendan patrones y puedan hacer predicciones o descubrir estructuras.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Tipos de Modelos Comunes:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li><strong>Clasificación:</strong> Predecir una categoría (ej. ¿cliente rotará?).</li>
+                        <li><strong>Regresión:</strong> Predecir un valor numérico (ej. ventas futuras).</li>
+                        <li><strong>Clustering:</strong> Agrupar datos similares (ej. segmentar clientes).</li>
+                        <li><strong>Reducción de Dimensionalidad:</strong> Simplificar datos.</li>
+                    </ul>
+                    <p class="mt-4 text-gray-700">La elección del modelo adecuado depende intrínsecamente de la pregunta de negocio y la naturaleza de los datos disponibles.</p>
+                </div>
+                <div class="chart-container h-[300px] md:h-[350px]">
+                    <canvas id="tiposModelosChart"></canvas>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600 text-center">Distribución de los tipos de modelos más utilizados en proyectos de ciencia de datos, reflejando la diversidad de problemas abordados.</p>
+        </section>
+
+        <section id="paso5" class="card">
+            <div class="flex items-center mb-6">
+                <span class="step-icon palette-red">⚙️</span>
+                <h2 class="text-3xl font-semibold">Paso 5: Evaluación y Optimización del Modelo</h2>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                Un modelo entrenado no garantiza ser un buen modelo. Esta etapa se enfoca en medir su rendimiento con métricas específicas (precisión, RMSE, etc.), validarlo rigurosamente (ej. validación cruzada) y ajustarlo (tuning de hiperparámetros) para asegurar que sea preciso, robusto y generalizable a nuevos datos.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                 <div>
+                    <h3 class="text-xl font-semibold mb-3">Actividades Clave:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Evaluar el rendimiento con métricas adecuadas (Accuracy, F1-Score, RMSE).</li>
+                        <li>Realizar validación cruzada para asegurar la generalización.</li>
+                        <li>Ajustar hiperparámetros para optimizar el rendimiento.</li>
+                        <li>Analizar errores para entender las fallas del modelo.</li>
+                    </ul>
+                     <p class="mt-4 text-gray-700">Una evaluación exhaustiva es vital para generar confianza en las predicciones del modelo y su utilidad práctica.</p>
+                </div>
+                <div class="chart-container h-[300px] md:h-[350px]">
+                    <canvas id="evaluacionModelosChart"></canvas>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600 text-center">Comparativa de dos modelos hipotéticos a través de múltiples métricas de evaluación, ayudando a seleccionar el mejor.</p>
+        </section>
+
+        <section id="paso6" class="card">
+            <div class="flex items-center mb-6">
+                <span class="step-icon palette-yellow">🚀</span>
+                <h2 class="text-3xl font-semibold">Paso 6: Despliegue y Monitoreo</h2>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                Un modelo solo aporta valor cuando se pone en producción y sus insights se utilizan. Esta fase implica integrar el modelo en los sistemas existentes (ej. como una API) y monitorear continuamente su rendimiento en el mundo real, reentrenándolo si es necesario para mantener su precisión ante cambios en los datos (deriva del modelo).
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Ciclo de MLOps:</h3>
+                    <div class="space-y-2 text-gray-700 mt-2">
+                        <div class="flex items-center p-2 border border-palette-blue rounded-md shadow-sm">
+                            <span class="text-xl mr-2">1️⃣</span> Despliegue del Modelo
+                        </div>
+                        <div class="flow-arrow">⬇️</div>
+                        <div class="flex items-center p-2 border border-palette-blue rounded-md shadow-sm">
+                            <span class="text-xl mr-2">2️⃣</span> Monitoreo Continuo
+                        </div>
+                         <div class="flow-arrow">⬇️</div>
+                        <div class="flex items-center p-2 border border-palette-blue rounded-md shadow-sm">
+                            <span class="text-xl mr-2">3️⃣</span> Detección de Deriva / Alertas
+                        </div>
+                        <div class="flow-arrow">⬇️</div>
+                        <div class="flex items-center p-2 border border-palette-blue rounded-md shadow-sm">
+                            <span class="text-xl mr-2">4️⃣</span> Reentrenamiento y Actualización
+                        </div>
+                         <div class="flow-arrow">🔄</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold mb-3">Impacto del Despliegue:</h3>
+                    <div class="bg-palette-green text-white p-6 rounded-lg shadow-lg">
+                        <div class="text-5xl font-bold mb-2">99.8%</div>
+                        <div class="text-lg">Precisión del Modelo en Producción</div>
+                    </div>
+                    <p class="mt-4 text-gray-700">El monitoreo asegura que el modelo siga aportando valor y manteniendo su fiabilidad a lo largo del tiempo.</p>
+                </div>
+            </div>
+             <p class="mt-4 text-sm text-gray-600 text-center">El diagrama ilustra el ciclo continuo de despliegue, monitoreo y mantenimiento, esencial en MLOps.</p>
+        </section>
+
+        <section id="paso7" class="card">
+            <div class="flex items-center mb-6">
+                <span class="step-icon palette-green">🗣️</span>
+                <h2 class="text-3xl font-semibold">Paso 7: Comunicación de Resultados</h2>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                El trabajo no termina con un modelo preciso. Es fundamental comunicar los hallazgos, insights y recomendaciones de manera clara y efectiva a las partes interesadas, especialmente a audiencias no técnicas. Una buena comunicación transforma los resultados técnicos en decisiones de negocio accionables.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-4 border border-palette-red rounded-lg shadow-sm text-center">
+                    <div class="text-4xl mb-2">📄</div>
+                    <h3 class="text-lg font-semibold mb-1">Informe Detallado</h3>
+                    <p class="text-sm text-gray-600">Documentación técnica y hallazgos exhaustivos para análisis profundo.</p>
+                </div>
+                <div class="p-4 border border-palette-yellow rounded-lg shadow-sm text-center">
+                    <div class="text-4xl mb-2">📊</div>
+                    <h3 class="text-lg font-semibold mb-1">Dashboard Interactivo</h3>
+                    <p class="text-sm text-gray-600">Visualizaciones dinámicas para que los usuarios exploren los datos y KPIs.</p>
+                </div>
+                <div class="p-4 border border-palette-blue rounded-lg shadow-sm text-center">
+                    <div class="text-4xl mb-2">🎤</div>
+                    <h3 class="text-lg font-semibold mb-1">Presentación Ejecutiva</h3>
+                    <p class="text-sm text-gray-600">Resumen de alto nivel con insights clave y recomendaciones para la toma de decisiones.</p>
+                </div>
+            </div>
+             <p class="mt-6 text-gray-700 leading-relaxed">Adaptar el mensaje y el medio al público es clave para asegurar que los valiosos insights generados por la ciencia de datos impulsen un cambio real y positivo en la organización.</p>
+        </section>
+
+        <section id="conclusion" class="card text-center">
+            <h2 class="text-3xl font-semibold mb-4">Un Ciclo Continuo de Aprendizaje e Innovación</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Es importante recordar que la ciencia de datos no es un proceso estrictamente lineal, sino inherentemente **iterativo**. Los hallazgos en una etapa pueden llevar a refinar pasos anteriores. Dominar este ciclo, junto con las herramientas adecuadas y un pensamiento crítico, permite transformar el ruido de los datos en la sinfonía del conocimiento.
+            </p>
+            <p class="mt-4 text-lg text-gray-700 font-semibold">¡El futuro está impulsado por los datos, y la ciencia de datos es la fuerza que lo moldea!</p>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 text-gray-600 border-t border-gray-300 mt-8">
+        <p>&copy; <span id="currentYear"></span> Infografía de Ciencia de Datos. Creado con fines ilustrativos.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const primaryTextColor = '#073B4C'; // Dark Blue/Black from palette
+        const gridColor = 'rgba(7, 59, 76, 0.1)'; // Lighter version of primary text for grids
+
+        Chart.defaults.color = primaryTextColor;
+        Chart.defaults.borderColor = gridColor;
+        
+        function wrapLabels(label, maxWidth) {
+            if (typeof label !== 'string') {
+                return label; // Return as is if not a string (e.g., number, array)
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: primaryTextColor,
+                        font: { size: 12 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: 'rgba(7, 59, 76, 0.9)', // Dark blue tooltip
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    borderColor: '#118AB2',
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { 
+                        color: primaryTextColor,
+                        font: { size: 11 },
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return typeof label === 'string' && label.length > 10 ? wrapLabels(label, 10) : label;
+                        }
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: primaryTextColor, font: { size: 11 } },
+                    grid: { color: gridColor, drawBorder: false }
+                }
+            }
+        };
+        
+        const commonPieDonutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right', // Better for pie/donut
+                    labels: {
+                        color: primaryTextColor,
+                        font: { size: 12 },
+                        boxWidth: 20,
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                     callbacks: {
+                        title: tooltipTitleCallback,
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed + '%';
+                            }
+                            return label;
+                        }
+                    },
+                    backgroundColor: 'rgba(7, 59, 76, 0.9)',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    borderColor: '#118AB2',
+                    borderWidth: 1
+                }
+            }
+        };
+
+
+        // Chart 1: Fuentes de Datos
+        const fuentesDatosCtx = document.getElementById('fuentesDatosChart').getContext('2d');
+        new Chart(fuentesDatosCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Bases de Datos Internas', 'APIs Externas', 'Web Scraping', 'Documentos y Hojas de Cálculo', 'Sensores (IoT)'],
+                datasets: [{
+                    label: 'Distribución de Fuentes de Datos',
+                    data: [55, 20, 10, 10, 5],
+                    backgroundColor: ['#118AB2', '#06D6A0', '#FFD166', '#FF6B6B', '#EF476F'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: { ...commonPieDonutOptions, plugins: { ...commonPieDonutOptions.plugins, legend: { position: 'bottom'}}}
+        });
+
+        // Chart 2: Tiempo en Preparación de Datos
+        const tiempoPreparacionCtx = document.getElementById('tiempoPreparacionChart').getContext('2d');
+        new Chart(tiempoPreparacionCtx, {
+            type: 'bar', // Changed to bar for better readability of categories
+            data: {
+                labels: [wrapLabels('Limpieza de Datos',16), wrapLabels('Manejo de Faltantes/Outliers',16), wrapLabels('Ingeniería de Características',16), wrapLabels('Transformación y Formateo',16)],
+                datasets: [{
+                    label: 'Porcentaje de Tiempo Dedicado',
+                    data: [40, 20, 25, 15],
+                    backgroundColor: ['#06D6A0', '#FFD166', '#118AB2', '#FF6B6B'],
+                    borderRadius: 4,
+                    barPercentage: 0.7
+                }]
+            },
+            options: { ...commonChartOptions, indexAxis: 'y', scales: { ...commonChartOptions.scales, x: {...commonChartOptions.scales.x, grid: {display: true, color: gridColor}}, y: {...commonChartOptions.scales.y, grid: {display: false}} } }
+        });
+
+        // Chart 3: Tendencia EDA
+        const tendenciaEDACtx = document.getElementById('tendenciaEDAChart').getContext('2d');
+        new Chart(tendenciaEDACtx, {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [{
+                    label: 'Interacciones de Usuarios (Miles)',
+                    data: [12, 19, 15, 22, 18, 25, 23, 28, 30, 26, 32, 35],
+                    borderColor: '#118AB2',
+                    backgroundColor: 'rgba(17, 138, 178, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        // Chart 4: Tipos de Modelos
+        const tiposModelosCtx = document.getElementById('tiposModelosChart').getContext('2d');
+        new Chart(tiposModelosCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Clasificación', 'Regresión', 'Clustering', 'Series Temporales', 'Otros'],
+                datasets: [{
+                    label: 'Distribución de Tipos de Modelos',
+                    data: [40, 25, 15, 10, 10],
+                    backgroundColor: ['#FF6B6B', '#FFD166', '#06D6A0', '#118AB2', '#073B4C'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: commonPieDonutOptions
+        });
+
+        // Chart 5: Evaluación de Modelos
+        const evaluacionModelosCtx = document.getElementById('evaluacionModelosChart').getContext('2d');
+        new Chart(evaluacionModelosCtx, {
+            type: 'radar',
+            data: {
+                labels: [wrapLabels('Precisión (Accuracy)',12), 'Recall', wrapLabels('F1-Score',12), 'AUC', wrapLabels('Error (RMSE)',12)],
+                datasets: [{
+                    label: 'Modelo Alfa',
+                    data: [0.85, 0.88, 0.86, 0.92, 0.15],
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                    pointBackgroundColor: '#FF6B6B',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#FF6B6B'
+                }, {
+                    label: 'Modelo Beta',
+                    data: [0.90, 0.82, 0.85, 0.90, 0.18],
+                    borderColor: '#118AB2',
+                    backgroundColor: 'rgba(17, 138, 178, 0.2)',
+                    pointBackgroundColor: '#118AB2',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#118AB2'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: { position: 'top', labels: { color: primaryTextColor, font: {size: 12}}},
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback },
+                        backgroundColor: 'rgba(7, 59, 76, 0.9)',
+                        titleColor: '#FFFFFF',
+                        bodyColor: '#FFFFFF',
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: gridColor },
+                        grid: { color: gridColor },
+                        pointLabels: { 
+                            font: { size: 10 }, 
+                            color: primaryTextColor,
+                            callback: function(label) {
+                                return wrapLabels(label, 12);
+                            }
+                        },
+                        ticks: { backdropColor: 'transparent', color: primaryTextColor, font: {size: 9} }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
